@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 func testWriterErrorType(t testing.TB, e error) {

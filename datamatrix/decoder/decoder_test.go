@@ -52,7 +52,10 @@ func TestDecode(t *testing.T) {
 	}
 
 	// error collection
-	bits.SetRegion(3, 3, 5, 5)
+	e = bits.SetRegion(3, 3, 5, 5)
+	if e != nil {
+		t.Fatalf("SetRegion returns error, %v", e)
+	}
 	r, e = d.Decode(bits)
 	if e != nil {
 		t.Fatalf("Decode returns error, %v", e)
@@ -62,8 +65,11 @@ func TestDecode(t *testing.T) {
 	}
 
 	// checksum exception
-	bits.SetRegion(3, 3, 10, 10)
-	r, e = d.Decode(bits)
+	e = bits.SetRegion(3, 3, 10, 10)
+	if e != nil {
+		t.Fatalf("SetRegion returns error, %v", e)
+	}
+	_, e = d.Decode(bits)
 	if _, ok := e.(gozxing.ChecksumException); !ok {
 		t.Fatalf("Decode must be ChecksumException, %T", e)
 	}

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 
 	"github.com/makiuchi-d/gozxing"
 )

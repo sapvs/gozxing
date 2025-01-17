@@ -1,7 +1,7 @@
 package encoder
 
 import (
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 const (

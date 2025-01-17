@@ -1,7 +1,7 @@
 package gozxing
 
 import (
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 const thumbnailScaleFactor = 2

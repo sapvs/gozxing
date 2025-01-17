@@ -4,7 +4,7 @@ import (
 	"math/bits"
 	"strings"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 type BitMatrix struct {

@@ -171,22 +171,17 @@ func decodeAsciiSegment(bits *common.BitSource, result, resultTrailer []byte, fn
 			case 232: // FNC1
 				fnc1positions.add(len(result))
 				result = append(result, 29) // translate as ASCII 29
-				break
 			case 233, 234: // Structured Append, Reader Programming
 				// Ignore these symbols for now
 				//throw ReaderException.getInstance();
-				break
 			case 235: // Upper Shift (shift to Extended ASCII)
 				upperShift = true
-				break
 			case 236: // 05 Macro
 				result = append(result, []byte("[)>\u001E05\u001D")...)
 				resultTrailer = append([]byte("\u001E\u0004"), resultTrailer...)
-				break
 			case 237: // 06 Macro
 				result = append(result, []byte("[)>\u001E06\u001D")...)
 				resultTrailer = append([]byte("\u001E\u0004"), resultTrailer...)
-				break
 			case 238: // Latch to ANSI X12 encodation
 				return Mode_ANSIX12_ENCODE, result, resultTrailer, nil
 			case 239: // Latch to Text encodation
@@ -202,7 +197,6 @@ func decodeAsciiSegment(bits *common.BitSource, result, resultTrailer []byte, fn
 					return Mode_ASCII_ENCODE, result, resultTrailer, gozxing.NewFormatException(
 						"oneByte=%v, bits.Available()=%v", oneByte, bits.Available())
 				}
-				break
 			}
 		}
 	}
@@ -249,7 +243,6 @@ func decodeC40Segment(bits *common.BitSource, result []byte, fnc1positions intSe
 				} else {
 					return result, gozxing.NewFormatException("cValue = %v", cValue)
 				}
-				break
 			case 1:
 				if upperShift {
 					result = append(result, byte(cValue+128))
@@ -258,7 +251,6 @@ func decodeC40Segment(bits *common.BitSource, result []byte, fnc1positions intSe
 					result = append(result, byte(cValue))
 				}
 				shift = 0
-				break
 			case 2:
 				if cValue < len(C40_SHIFT2_SET_CHARS) {
 					c40char := C40_SHIFT2_SET_CHARS[cValue]
@@ -273,16 +265,13 @@ func decodeC40Segment(bits *common.BitSource, result []byte, fnc1positions intSe
 					case 27: // FNC1
 						fnc1positions.add(len(result))
 						result = append(result, 29) // translate as ASCII 29
-						break
 					case 30: // Upper Shift
 						upperShift = true
-						break
 					default:
 						return result, gozxing.NewFormatException("cValue = %v", cValue)
 					}
 				}
 				shift = 0
-				break
 			case 3:
 				if upperShift {
 					result = append(result, byte(cValue+224))
@@ -291,7 +280,6 @@ func decodeC40Segment(bits *common.BitSource, result []byte, fnc1positions intSe
 					result = append(result, byte(cValue+96))
 				}
 				shift = 0
-				break
 			default:
 				return result, gozxing.NewFormatException("cValue = %v", cValue)
 			}
@@ -339,7 +327,6 @@ func decodeTextSegment(bits *common.BitSource, result []byte, fnc1positions intS
 				} else {
 					return result, gozxing.NewFormatException("cValue = %v", cValue)
 				}
-				break
 			case 1:
 				if upperShift {
 					result = append(result, byte(cValue+128))
@@ -348,7 +335,6 @@ func decodeTextSegment(bits *common.BitSource, result []byte, fnc1positions intS
 					result = append(result, byte(cValue))
 				}
 				shift = 0
-				break
 			case 2:
 				// Shift 2 for Text is the same encoding as C40
 				if cValue < len(TEXT_SHIFT2_SET_CHARS) {
@@ -364,16 +350,13 @@ func decodeTextSegment(bits *common.BitSource, result []byte, fnc1positions intS
 					case 27: // FNC1
 						fnc1positions.add(len(result))
 						result = append(result, 29) // translate as ASCII 29
-						break
 					case 30: // Upper Shift
 						upperShift = true
-						break
 					default:
 						return result, gozxing.NewFormatException("cValue = %v", cValue)
 					}
 				}
 				shift = 0
-				break
 			case 3:
 				if cValue < len(TEXT_SHIFT3_SET_CHARS) {
 					textChar := TEXT_SHIFT3_SET_CHARS[cValue]
@@ -387,7 +370,6 @@ func decodeTextSegment(bits *common.BitSource, result []byte, fnc1positions intS
 				} else {
 					return result, gozxing.NewFormatException("cValue = %v", cValue)
 				}
-				break
 			default:
 				return result, gozxing.NewFormatException("shift = %v", shift)
 			}
@@ -420,16 +402,12 @@ func decodeAnsiX12Segment(bits *common.BitSource, result []byte) ([]byte, error)
 			switch cValue {
 			case 0: // X12 segment terminator <CR>
 				result = append(result, '\r')
-				break
 			case 1: // X12 segment separator *
 				result = append(result, '*')
-				break
 			case 2: // X12 sub-element separator >
 				result = append(result, '>')
-				break
 			case 3: // space
 				result = append(result, ' ')
-				break
 			default:
 				if cValue < 14 { // 0 - 9
 					result = append(result, byte(cValue+44))
@@ -438,7 +416,6 @@ func decodeAnsiX12Segment(bits *common.BitSource, result []byte) ([]byte, error)
 				} else {
 					return result, gozxing.NewFormatException("cValue = %v", cValue)
 				}
-				break
 			}
 		}
 	}

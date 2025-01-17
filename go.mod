@@ -1,8 +1,7 @@
 module github.com/makiuchi-d/gozxing
 
-go 1.17
+go 1.22
 
-require (
-	golang.org/x/text v0.3.7
-	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
-)
+require golang.org/x/text v0.21.0
+
+require github.com/go-faster/errors v0.7.1

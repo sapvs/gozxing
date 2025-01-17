@@ -3,7 +3,7 @@ package gozxing
 import (
 	"fmt"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 type ReaderException interface {

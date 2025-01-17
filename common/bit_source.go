@@ -1,7 +1,7 @@
 package common
 
 import (
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 type BitSource struct {

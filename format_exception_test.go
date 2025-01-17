@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 func testFormatExceptionType(t testing.TB, e error) {

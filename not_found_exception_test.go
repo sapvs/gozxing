@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 func testNotFoundExceptionType(t testing.TB, e error) {

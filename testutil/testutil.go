@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 
 	"github.com/makiuchi-d/gozxing"
 	"github.com/makiuchi-d/gozxing/common"

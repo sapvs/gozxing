@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 func newTestException(args ...interface{}) ReaderException {
@@ -24,7 +24,7 @@ func TestException_Format(t *testing.T) {
 		"reader_exception_test.go:18",
 	}
 	for _, c := range cases {
-		if strings.Index(s, c) < 0 {
+		if !strings.Contains(s, c) {
 			t.Fatalf("error message must contains \"%s\"\n%s", c, s)
 		}
 	}

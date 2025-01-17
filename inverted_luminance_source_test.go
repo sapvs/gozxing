@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 func TestInvertedLuminanceSource(t *testing.T) {

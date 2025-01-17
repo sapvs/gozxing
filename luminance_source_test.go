@@ -3,7 +3,7 @@ package gozxing
 import (
 	"testing"
 
-	errors "golang.org/x/xerrors"
+	"github.com/go-faster/errors"
 )
 
 type testLuminanceSource struct {
